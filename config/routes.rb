@@ -11,11 +11,11 @@ PracticeApp::Application.routes.draw do
   resources :users do
     resources :comments
   end
-  resources :events, module: 'user'
+  resources :events
   resources :events do
     resources :comments
   end
-  resources :relationships, module: 'user'
+  resources :relationships
   resources :password_resets
   get '/contact_us', to: 'welcome#contact_us'
   root to: 'welcome#index'
