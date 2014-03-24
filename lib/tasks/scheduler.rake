@@ -2,7 +2,7 @@ require 'rake'
 
 desc "Send reminder emails to all users with unread messages"
 task :send_reminder_emails => :environment do  # Task defined in rake file
-    User.each do |user|  # Defined in User.rb
+    User.all.each do |user|  # Defined in User.rb
       if user.unreads.count
         if user.created_at < Time.now - 20.hours &&  user.reminder_email_sent_at < Time.now - 20.hours
           begin
