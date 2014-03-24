@@ -1,6 +1,21 @@
 PracticeApp::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  config.action_mailer.default_url_options = { :host => 'smtp.mandrillapp.com' }
+  # ActionMailer Config
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25,
+    :user_name => "tpgmartin@gmail.com",
+    :password  => "MD7gHGTudL8bSsWwi9o1JQ"
+  }
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
