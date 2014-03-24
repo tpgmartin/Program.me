@@ -8,15 +8,18 @@ PracticeApp::Application.routes.draw do
   resources :messages
   resources :activities
   resources :sessions
+  resources :password_resets
+
   resources :users do
     resources :comments
+    resources :events
+    resources :relationships
   end
-  resources :events
+
   resources :events do
     resources :comments
   end
-  resources :relationships
-  resources :password_resets
+
   get '/contact_us', to: 'welcome#contact_us'
   root to: 'welcome#index'
 end
