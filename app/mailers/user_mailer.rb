@@ -17,6 +17,15 @@ class UserMailer < ActionMailer::Base
     mail to: invitation.recipient_email, subject: "Signup Invitation"
   end
 
+  def unreads_reminder(user)
+    @user = user
+    mail(to: user.email, subject: "Unread Messages")
+  end
+
+  def upcoming_events_reminder(user, events)
+    
+  end
+
   # def student_parent_signup(user, token)
   #   @user = user
   #   @tutor = user.token
