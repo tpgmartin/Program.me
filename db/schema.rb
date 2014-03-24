@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140323121224) do
+ActiveRecord::Schema.define(:version => 20140324172348) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20140323121224) do
     t.string   "role"
     t.integer  "invitation_id"
     t.string   "token"
+    t.datetime "reminder_email_sent_at"
   end
 
 end

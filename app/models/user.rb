@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
     Event.unread_by(self) + Relationship.unread_by(self) + Comment.unread_by(self)
   end
 
+  def needing_unreads_reminder_email
+    self.unreads.count > 0
+  end
+
   # def message_read
     
   # end
