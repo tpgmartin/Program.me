@@ -11,6 +11,9 @@
   <p><b>Profile: </b> <%= @user.role %></p>
   <p><b>Bio:</b> <!-- Put an editable field here --> </p>
 </div>
+<br>
+
+<%= render :partial => 'comments/form', :locals => {:commentable => @events} %>
 
 <hr>
 

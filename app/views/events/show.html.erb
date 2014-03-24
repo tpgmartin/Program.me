@@ -20,6 +20,8 @@
   <dd><%= @event.end_time %></dd>
 </dl>
 
+<%= render :partial => 'comments/form', :locals => {:commentable => @events} %>
+
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               events_path, :class => 'btn'  %>
