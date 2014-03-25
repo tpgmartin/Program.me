@@ -11,12 +11,14 @@ class Ability
       can :manage, User, :user_id => user.id
       can :manage, Event
       can :manage, Comment
+      can :manage, Relationship
       can [:read, :update, :destroy], Relationship    
     end
-    if user.role? :parent
+    if user.role? :student
       can :manage, User, :user_id => user.id
       can :manage, Event
       can :manage, Comment
+      can :manage, Relationship
       can [:read, :update, :destroy], Relationship
     end
     if user.role? :tutor

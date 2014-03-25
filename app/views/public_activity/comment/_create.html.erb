@@ -3,7 +3,8 @@
     <% when 'Comment' %>
       <% case activity.trackable.commentable.class.name %>
         <% when 'User' %>
-          commented on <%= link_to activity.trackable.commentable_type, user_comment_path(activity.trackable, activity.trackable.commentable) %>  on <%= activity.trackable.created_at %> 
+          <% link_text = (activity.trackable.user ? activity.trackable.user.full_name : 'uh oh!') %>
+          commented on <%= link_to link_text, user_comment_path( activity.trackable.commentable, activity.trackable,) %>  on <%= activity.trackable.created_at %> 
         <% when 'Event' %>
           commented on <%= link_to activity.trackable.commentable_type, event_comment_path(activity.trackable, activity.trackable.commentable) %>  on <%= activity.trackable.created_at %>
         <% else %>

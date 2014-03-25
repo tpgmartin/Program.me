@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   include PublicActivity::Common
-  
+  attr_accessor :tutor_token
+
   has_and_belongs_to_many :events
-  attr_accessible :email, :first_name, :last_name, :full_name, :password, :password_confirmation, :avatar_url, :role, :token
+  attr_accessible :email, :first_name, :last_name, :full_name, :password, :password_confirmation, :avatar_url, :role, :tutor_token
   has_secure_password
   # Associations
   has_many :relationships
@@ -22,11 +23,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\Z/
   validates_presence_of :password, :on => :create
-  validate :user_token_exists?
+  validate :tutor_token_exists?
   # Filters
   before_save :create_user_token
   # before_create :user_token_exists?
   before_create { generate_token(:auth_token) }
+  after_create :setup_tutor_relationship
   # Embedded associations
   ROLES = %w[parent student tutor]
 
@@ -54,8 +56,8 @@ class User < ActiveRecord::Base
     end while self.class.exists?(token: token)
   end
 
-  def user_token_exists?
-    errors.add(:base, 'Invalid user token') unless User.where(token: token).any? || ""
+  def tutor_token_exists?
+    errors.add(:tutor_token, 'is invalid') unless tutor_token.blank? || User.where(token: tutor_token).any?
   end
 
   def generate_token(column)
@@ -82,5 +84,13 @@ class User < ActiveRecord::Base
   # def message_read
     
   # end
+
+  private
+
+  def setup_tutor_relationship
+    unless tutor_token.blank? 
+      self.relationships.create relation_id: User.find_by_token(tutor_token).try(:id)
+    end
+  end
 
 end
