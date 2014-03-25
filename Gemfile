@@ -37,6 +37,8 @@ gem 'simple_form'
 gem 'public_activity'
 gem 'whenever', require: false
 gem 'kaminari'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'unread'
 gem 'acts_as_commentable', '3.0.1'
 

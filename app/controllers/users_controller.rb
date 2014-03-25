@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.relation_ids << current_user.id, owner_type: "User")#.page(params[:page])
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.relation_ids << current_user.id, owner_type: "User").paginate(:page => params[:page], :per_page => 10)
     @commentable = @user
     @comments = @commentable.comments
     @comment = Comment.new  
