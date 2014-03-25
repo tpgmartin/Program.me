@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new(params[:comment])
-    @comment.user_id = params[:user_id]    
+    @comment.user_id = params[:user_id]
+    @comment.event_id = params[:event_id]    
     if @comment.save
       @comment.create_activity :create, owner: current_user
       redirect_to @commentable, notice: "Comment created."

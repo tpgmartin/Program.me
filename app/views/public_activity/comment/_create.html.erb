@@ -1,19 +1,20 @@
 <% if activity.trackable %>
-  <% case activity.trackable.class.name %>
-    <% when 'Comment' %>
-      <% case activity.trackable.commentable.class.name %>
-        <% when 'User' %>
-          <% link_text = (activity.trackable.user ? activity.trackable.user.full_name : 'uh oh!') %>
-          commented on <%= link_to link_text, user_comment_path( activity.trackable.commentable, activity.trackable,) %>  on <%= activity.trackable.created_at %> 
-        <% when 'Event' %>
-          commented on <%= link_to activity.trackable.commentable_type, event_comment_path(activity.trackable, activity.trackable.commentable) %>  on <%= activity.trackable.created_at %>
-        <% else %>
-          commented on <%= link_to activity.trackable.title, activity.trackable %>  on <%= activity.trackable.created_at %>
-      <% end %> 
-    <% else %>
-      commented on <%= link_to activity.trackable.title, activity.trackable %>  on <%= activity.trackable.created_at %> 
-  <% end %>
+<% case activity.trackable.class.name %>
+<% when 'Comment' %>
+<% case activity.trackable.commentable.class.name %>
+<% when 'User' %>
+<% link_text = (activity.trackable.user ? activity.trackable.user.full_name : "User's name not found") %>
+commented on <%= link_to link_text, user_comment_path(activity.trackable.commentable, activity.trackable) %>  on <%= activity.trackable.created_at %> 
+<% when 'Event' %>
+<% link_text = (activity.trackable.event ? activity.trackable.event.name : "Event name not found" ) %>
+commented on <%= link_to link_text, event_comment_path(activity.trackable.commentable, activity.trackable) %> on <%= activity.trackable.created_at %>
+<% else %>
+commented on <%= link_to activity.trackable.title, activity.trackable %>  on <%= activity.trackable.created_at %>
+<% end %> 
+<% else %>
+commented on <%= link_to activity.trackable.title, activity.trackable %>  on <%= activity.trackable.created_at %> 
+<% end %>
 
 <% else %>
-  comment has been deleted
+comment has been deleted
 <% end %>
