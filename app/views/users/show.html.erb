@@ -15,7 +15,10 @@
 
 <%= render :partial => 'comments/form', :locals => {:commentable => @events} %>
 
-<hr>
+<h2>Comments</h2>
+  <div>
+    <%= render :partial => 'comments/comments' %>
+  </div>
 
 <h2>Activity</h2>
   <div class="activity">

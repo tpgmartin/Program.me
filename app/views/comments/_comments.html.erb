@@ -1,7 +1,7 @@
 <div id="comments">
 <% @comments.each do |comment| %>
   <div class="comment">
-    <%= simple_format comment.comment %>
+    <%= link_to comment.user.full_name %> wrote <%= comment.comment %> at <%= comment.created_at %>
   </div>
 <% end %>
 </div>
