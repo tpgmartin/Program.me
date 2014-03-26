@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140326023218) do
+ActiveRecord::Schema.define(:version => 20140326100939) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(:version => 20140326023218) do
     t.date     "date"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.datetime "start_time"
-    t.datetime "end_time"
     t.boolean  "read_status", :default => false
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
   create_table "events_users", :id => false, :force => true do |t|

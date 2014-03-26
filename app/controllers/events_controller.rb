@@ -13,6 +13,7 @@ class EventsController < ApplicationController
     @commentable = @event
     @comments = @commentable.comments
     @comment = Comment.new  
+    # @event.unread?(current_user) = false
   end
 
   def new
@@ -24,7 +25,7 @@ class EventsController < ApplicationController
     @event.users << current_user
     if @event.save
       @event.create_activity :create, owner: current_user
-      redirect_to @event, notice: "Event created."
+      redirect_to @user, notice: "Event created."
     else
       render :new
     end

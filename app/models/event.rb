@@ -6,10 +6,16 @@ class Event < ActiveRecord::Base
   acts_as_readable :on => :created_at
   has_many :comments, as: :commentable
   acts_as_commentable
+  validate :duration
   validates_presence_of :name, :date, :start_time, :end_time
 
   def read?
     self.read_status
+  end
+
+  def duration
+    errors.add(:start_time, "lessons can't start and end at the same time") unless !(end_time - start_time).zero?
+    # errors.add(:end_time, 'lessons must last at least one hour') unless !(end_time - start_time).zero?
   end
   # attr_accessor :end_time, :start_time
 
