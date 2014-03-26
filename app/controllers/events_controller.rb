@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     @commentable = @event
     @comments = @commentable.comments
     @comment = Comment.new  
-    # @event.unread?(current_user) = false
+    Reading.where(user_id: current_user.id).where(event_id: @event.id).delete_all
   end
 
   def new
@@ -25,7 +25,8 @@ class EventsController < ApplicationController
     @event.users << current_user
     if @event.save
       @event.create_activity :create, owner: current_user
-      redirect_to @user, notice: "Event created."
+      Reading.create(user_id: current_user.id, event_id: @event.id)
+      redirect_to current_user, notice: "Event created."
     else
       render :new
     end

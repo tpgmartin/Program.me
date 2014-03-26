@@ -10,7 +10,21 @@ class Event < ActiveRecord::Base
   validates_presence_of :name, :date, :start_time, :end_time
 
   def read?
-    self.read_status
+    !read_status ? "New" : ""
+  end
+
+  def mark_as_read
+    read_status = true
+  end
+
+  def unread_events
+    unreads = []
+    self.each do |event|
+      if event.read? == false
+        unreads << event
+      end
+    end
+    unreads.count
   end
 
   def duration

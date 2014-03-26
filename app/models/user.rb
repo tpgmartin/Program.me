@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def unreads
-    Event.unread_by(self) + Relationship.unread_by(self) + Comment.unread_by(self)
+    # Reading.where(user_id: current_user).count
   end
 
   def mark_as_read
