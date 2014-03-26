@@ -4,25 +4,20 @@ class Ability
   # TODO: Finish assignment of user roles
   def initialize(user)
     user ||= User.new
-    if user.role? :guest
-      can :create, User
-    end
     if user.role? :parent
-      can :manage, User, :user_id => user.id
+      can :manage, User, :id => user.id
       can :manage, Event
       can :manage, Comment
-      can :manage, Relationship
       can [:read, :update, :destroy], Relationship    
     end
     if user.role? :student
-      can :manage, User, :user_id => user.id
+      can :manage, User, :id => user.id
       can :manage, Event
       can :manage, Comment
-      can :manage, Relationship
       can [:read, :update, :destroy], Relationship
     end
     if user.role? :tutor
-      can :manage, User, :user_id => user.id
+      can :manage, User, :id => user.id
       can :manage, Event
       can :manage, Comment
       can :manage, Relationship
@@ -30,5 +25,7 @@ class Ability
     if user.role? :admin
       can :manage, :all
     end
+  else
+    can :create, User
   end
 end

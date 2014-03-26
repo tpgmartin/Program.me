@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # after_filter :check_signup
+  load_and_authorize_resource
   def index
     @users = User.all
   end
