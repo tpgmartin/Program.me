@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Program.me</title>
+  <title><%= @title || 'Program.me' %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <link href='http://fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "application" %>
@@ -22,7 +22,7 @@
         <div class="nav-collapse">
           <ul class="nav pull-right">
             <% if current_user %>
-            <li ><%= link_to "Logged in as #{current_user.first_name} #{current_user.last_name}", current_user %></li>
+            <li ><%= link_to "Logged in as #{current_user.first_name} #{current_user.last_name}", user_path(id:current_user) %></li>
             <li><%= link_to "Log Out", session_path("current"), method: "delete", :confirm=>'Are you sure?' %></li> 
             <li><%= link_to "New Events: #{Reading.where(user_id: current_user).count}", current_user %></li>
             <!-- <li><%#= @messages.size %></li> -->
