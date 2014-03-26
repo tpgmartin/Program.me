@@ -21,10 +21,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(params[:event])    
     @event.users << current_user
+    @user = current_user
     if @event.save
       @event.create_activity :create, owner: current_user
+      UserMailer.event_creation(@user, @event, event_url(@event)).deliver
       Reading.create(user_id: current_user.id, event_id: @event.id)
       redirect_to current_user, notice: "Event created."
     else

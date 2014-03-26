@@ -5,7 +5,7 @@ Thank you for signing up!
 To view your profile, please visit <%= user_url(@user) %>
 
 <% if @user.role == 'tutor' %>
-  Your unique key is: <%= @user.id %>
+  Your unique key is: <%= @user.token %>
 
   Please keep this safe, and make sure to share with your clients.
 <% end %>

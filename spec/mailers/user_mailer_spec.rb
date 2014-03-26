@@ -8,7 +8,7 @@ describe UserMailer do
     it "sends user password reset url" do
       mail.subject.should eq("Password Reset")
       mail.to.should eq([user.email])
-      mail.from.should eq(["from@example.com"])
+      mail.from.should eq(["help@program.me"])
     end
 
     it "renders the body" do

@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "help@program.me"
 
   def password_reset(user)
     @user = user
@@ -17,9 +17,11 @@ class UserMailer < ActionMailer::Base
     mail to: invitation.recipient_email, subject: "Signup Invitation"
   end
 
-  def unreads_reminder(user)
+  def event_creation(user, event, event_url)
     @user = user
-    mail(to: user.email, subject: "Unread Messages")
+    @event = event
+    @event_url = event_url
+    mail(to: event.recipient_email, subject: "Lesson Created")
   end
 
   def upcoming_events_reminder(user, events)
