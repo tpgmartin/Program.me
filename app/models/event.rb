@@ -8,6 +8,9 @@ class Event < ActiveRecord::Base
   acts_as_commentable
   validates_presence_of :name, :date, :start_time, :end_time
 
+  def read?
+    self.read_status
+  end
   # attr_accessor :end_time, :start_time
 
   # # add some callbacks
