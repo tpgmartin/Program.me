@@ -1,5 +1,5 @@
 <% if activity.trackable %>
-  connected with <%= link_to activity.trackable.user.full_name %>  on <%= activity.trackable.created_at %> 
+  connected with <%= link_to activity.trackable.relation.full_name %>  on <%= activity.trackable.created_at.strftime("%H:%M %e %B %Y") %>
 <% else %>
   contact deleted
 <% end %>

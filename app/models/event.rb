@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
   acts_as_readable :on => :created_at
   has_many :comments, as: :commentable
   acts_as_commentable
+  validates_presence_of :recipient_email
+  validate :recipient_is_not_registered
   validate :duration
   validates_presence_of :name, :date, :start_time, :end_time
 
@@ -27,9 +29,15 @@ class Event < ActiveRecord::Base
     unreads.count
   end
 
+  private
+
   def duration
     errors.add(:start_time, "End time must be later than start time") unless ((end_time - start_time) > 0) 
     # errors.add(:end_time, 'lessons must last at least one hour') unless !(end_time - start_time).zero?
+  end
+
+  def recipient_is_not_registered
+    errors.add :recipient_email, 'is not registered' unless User.find_by_email(recipient_email) 
   end
   # attr_accessor :end_time, :start_time
 
