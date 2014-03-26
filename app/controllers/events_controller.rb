@@ -41,7 +41,7 @@ class EventsController < ApplicationController
     @event.users << current_user
     if @event.update_attributes(params[:event])
       @event.create_activity :update, owner: current_user
-      redirect_to @event, notice: 'Event updated.'
+      redirect_to current_user, notice: 'Event updated.'
     else
       render action: "edit" 
     end
@@ -50,7 +50,7 @@ class EventsController < ApplicationController
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    @event.create_activity :destroy, owner: current_user
+    # @event.create_activity :destroy, owner: current_user
     redirect_to events_url 
   end
 end

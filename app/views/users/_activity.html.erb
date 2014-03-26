@@ -3,7 +3,8 @@
     <div class="activity">
       <%= link_to activity.owner.full_name, activity.owner if activity.owner %>
       <%= render_activity activity %>
-      (<%= link_to "remove", :method => :delete %>)
+
+      (<%= link_to t('.destroy', :default => t("helpers.links.destroy")), activity_path(activity), :method => 'delete', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm")) } %>)
     </div>
   <% end %>
 </div>
