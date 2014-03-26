@@ -7,6 +7,7 @@ class ActivitiesController < ApplicationController
 
     # @comment = current_user.comments.find(params[:id])
     @activity = PublicActivity::Activity.find_by_id(params[:id])
+    Reading.where(user_id: @activity.owner_id).where(event_id: @activity.trackable_id).delete_all
     @activity.destroy
     # @comment.destroy
     flash[:notice] = "Successfully removed activity."

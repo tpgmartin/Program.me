@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
   end
 
   def duration
-    errors.add(:start_time, "lessons can't start and end at the same time") unless !(end_time - start_time).zero?
+    errors.add(:start_time, "End time must be later than start time") unless ((end_time - start_time) > 0) 
     # errors.add(:end_time, 'lessons must last at least one hour') unless !(end_time - start_time).zero?
   end
   # attr_accessor :end_time, :start_time
