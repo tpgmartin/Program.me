@@ -7,14 +7,24 @@ class Ability
 
     if user.role? :parent
       can :manage, User, :id => user.id
-      can :manage, Event
-      can :manage, Comment
+      can :manage, Event 
+      can [:read, :edit], Event do |target_event|
+        user.events.include?(target_event)
+      end
+      can :manage, Comment do |target_comment|
+        user.comments.include?(target_comment)
+      end
       can [:read, :update, :destroy], Relationship    
     end
     if user.role? :student
       can :manage, User, :id => user.id
-      can :manage, Event
-      can :manage, Comment
+      can :create, Event
+      can [:read, :edit], Event do |target_event|
+        user.events.include?(target_event)
+      end
+      can :manage, Comment do |target_comment|
+        user.comments.include?(target_comment)
+      end
       can [:read, :update, :destroy], Relationship
     end
 
@@ -32,8 +42,13 @@ class Ability
       #   relation.user_id == user.id
       # end
 
-      can :manage, Event
-      can :manage, Comment
+      can :create, Event       
+      can [:read, :edit], Event do |target_event|
+        user.events.include?(target_event)
+      end
+      can :manage, Comment do |target_comment|
+        user.comments.include?(target_comment)
+      end
       can :manage, Relationship
     end
     if user.role? :admin

@@ -6,7 +6,6 @@ class Event < ActiveRecord::Base
   acts_as_readable :on => :created_at
   has_many :comments, as: :commentable
   acts_as_commentable
-  validates_presence_of :recipient_email
   validate :recipient_is_not_registered
   validate :duration
   validates_presence_of :name, :date, :start_time, :end_time
