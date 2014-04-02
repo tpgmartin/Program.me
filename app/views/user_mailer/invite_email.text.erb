@@ -1,5 +1,5 @@
-You have been invited to <%= http://program-me.herokuapp.com/, "Program.me"%> by <%= @user.full_name %>.
+You have been invited to <%= link_to "Program.me", "http://program-me.herokuapp.com/"%> by <%= @user.full_name %>.
 
 If you wish to connect with this tutor, please signup quoting their unique key <%= @user.token %>.
 
-Signup here <%= @sign_url  %>
+Signup here <%= @signup_url  %>

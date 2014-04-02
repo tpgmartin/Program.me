@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\Z/
   validates_presence_of :password, :on => :create
+  validates :password, :length => {:within => 6..20}
   validate :tutor_token_exists?
   # Filters
   before_save :create_user_token
@@ -52,7 +53,7 @@ class User < ActiveRecord::Base
 
   def create_user_token
     begin
-      self.token=SecureRandom.urlsafe_base64
+      self.token= ['black','brown','red','orange','yellow','green','blue','indigo','violet','grey','white'].sample + '-' + ['cat','dog','mouse','horse','snake','bird','whale','elephant','ant','giraffe','fox'].sample + '-' + Time.now.to_i.to_s[6..-1]
     end while self.class.exists?(token: token)
   end
 
