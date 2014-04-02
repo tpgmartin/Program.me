@@ -7,8 +7,10 @@
 <ul style="list-style-type: none">
   <% for relationship in @user.relationships %>
     <li>
+      <% if relationship.relation %>
       <%= relationship.relation.full_name %>
       (<%= link_to "remove", relationship, :method => :delete %>)
+      <% end %>
     </li>
   <% end %>
 </ul>

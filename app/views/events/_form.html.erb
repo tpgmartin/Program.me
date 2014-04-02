@@ -4,7 +4,13 @@
 
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :recipient_email %>
+  
+  <div class="control-group required event_recipient_email">
+    <%= f.collection_select :recipient_email, User.order(:id), :email, :full_name, include_blank: true  %>
+  </div>
+ <!--  <#%= f.input :recipient_email, collection: User.order(:id), as: :grouped_select, group_method: :email %> -->
+
+
   <%= f.input :date, as: :datepicker %>
   <%= f.input :start_time %>
   <%= f.input :end_time %>

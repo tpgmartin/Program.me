@@ -20,7 +20,9 @@
     <% if @events_by_date[date] %>
     <ul>
       <% @events_by_date[date].each do |event| %>
-        <li><%= link_to event.name, event %></li>
+        <% if event.users[0].email == current_user.email || event.recipient_email == current_user.email %>
+          <li><%= link_to event.name, event %></li>
+        <% end %>
       <% end %>
     </ul>
     <% end %>
