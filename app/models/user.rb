@@ -47,8 +47,13 @@ class User < ActiveRecord::Base
 
   def full_name=(name)
     split = name.split(' ', 2)
-    self.first_name = split.first
-    self.last_name = split.last
+    if split.size != 1
+      self.first_name = split.first
+      self.last_name = split.last
+    else
+      self.first_name = split.first
+      self.last_name = ""
+    end
   end
 
   def create_user_token
