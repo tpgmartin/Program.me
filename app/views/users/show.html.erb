@@ -10,7 +10,7 @@
 <div>
   <p><b>Email:</b> <%= @user.email %></p> <!-- Add option to email user -->
   <p><b>Member Since:</b> <%= @user.created_at.strftime("%d %B %Y") %></p> <!-- Want to change datetime format -->
-  <p><b>Profile: </b> <%= @user.role %></p>
+  <p><b>Profile: </b> <%= @user.role.capitalize %></p>
   <p><b>Bio:</b> <!-- Put an editable field here --> </p>
 </div>
 <br>

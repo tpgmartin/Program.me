@@ -4,30 +4,11 @@
 
   <%= f.input :name %>
   <%= f.input :description %>
-  
-<!--   <div class="control-group required event_recipient_email">
-    <#% @relationships.each do |relationship| %>
-      <#%= f.collection_select :recipient_email, relationship.relation, :email, :full_name, include_blank: true  %>
-    <#% end %>
-  </div> -->
- <!--  <#%= f.input :recipient_email, collection: User.order(:id), as: :grouped_select, group_method: :email %> -->
-
-  <!-- <div class="control-group required event_recipient_email"> -->
-    <!-- <#%= f.collection_select :recipient_email, Relationship.all, :email, :user_id, :prompt => "Recipient Email"%> -->
-  <!-- </div> -->
 
   <div class="control-group required event_recipient_email" style="margin-left: 100px">
     Recipient &nbsp;&nbsp;&nbsp;
-    <%= f.collection_select :recipient_email, User.order(:id), :email, :full_name, include_blank: true  %>
+    <%= f.collection_select :recipient_email, current_user.relations, :email, :full_name, include_blank: true  %>
   </div>
-
-    <%= f.collection_select :recipient_email, Relationship.where(user_id: current_user.id).all, :user_id, :relation_id, include_blank: true %>
-
-<!--   <select name="post[email]">
-      <#% Relationship.where(user_id: current_user.id).each do |relation| %>
-          <option value="<#%= relation.id %>"><#%= relation.email%></option>
-      <#% end %>
-  </select> -->
 
   <%= f.input :date, as: :datepicker %>
   <%= f.input :start_time %>
