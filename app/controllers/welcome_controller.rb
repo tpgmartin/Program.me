@@ -3,5 +3,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact_us    
+    UserMailer.signup_confirmation(@user).deliver
+
   end
 end

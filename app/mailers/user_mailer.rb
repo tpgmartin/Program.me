@@ -28,6 +28,10 @@ class UserMailer < ActionMailer::Base
     
   end
 
+  def contact_us()
+    
+  end
+
   # def student_parent_signup(user, token)
   #   @user = user
   #   @tutor = user.token
