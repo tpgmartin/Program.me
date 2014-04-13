@@ -21,6 +21,8 @@
     <%= f.collection_select :recipient_email, User.order(:id), :email, :full_name, include_blank: true  %>
   </div>
 
+    <%= f.collection_select :recipient_email, Relationship.where(user_id: current_user.id).all, :user_id, :relation_id, include_blank: true %>
+
 <!--   <select name="post[email]">
       <#% Relationship.where(user_id: current_user.id).each do |relation| %>
           <option value="<#%= relation.id %>"><#%= relation.email%></option>
