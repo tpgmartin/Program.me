@@ -17,6 +17,5 @@ PracticeApp::Application.routes.draw do
   end
   resources :relationships
   resources :password_resets
-  get '/contact_us', to: 'welcome#contact_us'
   root to: 'welcome#index'
 end

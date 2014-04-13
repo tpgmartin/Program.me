@@ -30,7 +30,7 @@
             <li><%= link_to "Sign Up", signup_path %></li>
             <li><%= link_to "Log In", login_path %></li>
             <% end %>
-            <li><%= link_to "Contact Us", contact_us_path %></li>
+            <li><%= mail_to "help@program.me", "Contact Us" %></li>
           </ul>
         </div>
       </div>
