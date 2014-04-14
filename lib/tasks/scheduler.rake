@@ -21,7 +21,7 @@ desc "Send lesson reminder emails to users"
 task :send_lesson_reminder => :environment do
   Event.all.each do |event|
     event.users.each do |user|
-      if event.start_time < Time.now + 20.hours
+      if event.start_time < Time.now + 24.hours
         begin
           Rails.logger.info "LESSON REMINDER: emailing #{user.email}"
           UserMailer.lesson_reminder(user, event).deliver

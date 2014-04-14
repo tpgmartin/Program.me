@@ -1,13 +1,19 @@
 class UsersController < ApplicationController
   # after_filter :check_signup
   load_and_authorize_resource
+
+  @@connections = []
+
+  before_filter :check_relations
+  before_filter :check_inverse_relations
+
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.relation_ids << current_user.id, owner_type: "User").paginate(:page => params[:page], :per_page => 10)
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.relation_ids << current_user.id << @@connections, owner_type: "User")#.paginate(:page => params[:page], :per_page => 10)
     @commentable = @user
     @comments = @commentable.comments
     @comment = Comment.new  
@@ -37,6 +43,19 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def check_relations
+    @user.relations.each do |relation|
+      @@connections << relation.id
+    end
+  end
+
+  def check_inverse_relations
+    @user.inverse_relations.each do |inverse_relation|
+      @@connections << inverse_relation.id
+    end
+
+  end
 
   # def check_signup
   #   authenticate_or_request_with_http_token do |token, options|

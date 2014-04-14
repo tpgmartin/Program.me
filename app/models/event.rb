@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
   end
 
   def recipient_is_not_registered
-    errors.add :recipient_email, 'is not registered' unless User.find_by_email(recipient_email) 
+    errors.add :recipient_email, 'is not registered' unless User.find_by_email(recipient_email) || ""
   end
   # attr_accessor :end_time, :start_time
 

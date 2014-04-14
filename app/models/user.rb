@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     self.unreads.count > 0
   end
 
+  def greet
+    puts "HELLO!"
+  end
+
   # def message_read
     
   # end
