@@ -24,7 +24,7 @@ task :send_lesson_reminder => :environment do
       if event.start_time < Time.now - 20.hours
         begin
           Rails.logger.info "LESSON REMINDER: emailing #{user.email}"
-          puts "#{user.email}"
+          UserMailer.lesson_reminder(user, event).deliver
         rescue Exception => e
           Rails.logger.error "ERROR! #{e}"
         end
