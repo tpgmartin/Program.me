@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 
   def new
     @user = current_user
+    @contacts = current_user.inverse_relations & current_user.relations
     @relationships = Relationship.where(user_id: current_user.id)
     @event = Event.new
   end

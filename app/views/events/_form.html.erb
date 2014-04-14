@@ -7,7 +7,7 @@
 
   <div class="control-group required event_recipient_email" style="margin-left: 100px">
     Recipient &nbsp;&nbsp;&nbsp;
-    <%= f.collection_select :recipient_email, current_user.relations, :email, :full_name, include_blank: true  %>
+    <%= f.collection_select :recipient_email, @contacts, :email, :full_name, include_blank: true  %>
   </div>
 
   <%= f.input :date, as: :datepicker %>
