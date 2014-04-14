@@ -24,6 +24,18 @@ class UserMailer < ActionMailer::Base
     mail(to: event.recipient_email, subject: "Lesson Created")
   end
 
+  def lesson_reminder(user, event)
+    @event = event
+    @user = user
+    mail(to: user.email, subject: "Lesson Reminder")
+  end
+
+  def  send_feedback_reminder(user, event)
+    @event = event
+    @user = user
+    mail(to: user.email, subject: "Feedback Reminder")
+  end
+
   def upcoming_events_reminder(user, events)
     
   end

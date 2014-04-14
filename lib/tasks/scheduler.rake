@@ -33,6 +33,22 @@ task :send_lesson_reminder => :environment do
   end
 end
 
+desc "Send feedback reminder emails to users"
+task :send_feedback_reminder => :environment do
+  Event.all.each do |event|
+    event.users.each do |user|
+      if event.end_time < Time.now
+        begin
+          Rails.logger.info "FEEDBACK REMINDER: emailing #{user.email}"
+          UserMailer.feedback_reminder(user, event).deliver
+        rescue Exception => e
+          Rails.logger.error "ERROR! #{e}"
+        end
+      end
+    end
+  end
+end
+
 desc "This task is called by the Heroku scheduler add-on"
 task :cheery_greeting => :environment do
   puts "Greeting in 1...2...3"
