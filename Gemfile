@@ -35,6 +35,7 @@ gem 'rails_12factor', group: :production
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'public_activity'
+gem 'ancestry'
 gem 'whenever', require: false
 gem 'kaminari'
 gem 'will_paginate'

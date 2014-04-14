@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140326185658) do
+ActiveRecord::Schema.define(:version => 20140414012810) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(:version => 20140326185658) do
     t.integer  "event_id"
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.string   "ancestry"
   end
 
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
   add_index "comments", ["event_id"], :name => "index_comments_on_event_id"
@@ -50,9 +52,8 @@ ActiveRecord::Schema.define(:version => 20140326185658) do
     t.string   "name"
     t.text     "description"
     t.date     "date"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "read_status",     :default => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.time     "start_time"
     t.time     "end_time"
     t.integer  "sender_id"

@@ -3,14 +3,15 @@ class CommentsController < ApplicationController
   before_filter :load_commentable
 
   def index
-    @comments = @commentable.comments.order("created_at desc").paginate(:page => params[:page], :per_page => 10)
+    @comments = @commentable.comments.order("created_at desc")#.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
+    # @comment = Comment.find(params[:id])
   end
 
   def new
-    @comment = @commentable.comments.new
+    @comment = @commentable.comments.new#(:parent_id => params[:parent_id])
   end
 
   def create

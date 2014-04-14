@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
   include PublicActivity::Common
 
+  # has_ancestry
+
   acts_as_readable :on => :created_at
 
   attr_accessible :comment

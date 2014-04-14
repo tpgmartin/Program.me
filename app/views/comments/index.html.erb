@@ -3,6 +3,21 @@
 <%= render :partial => '/submenu' %>
 
 <div class="page-header"><h1>Feedback</h1></div>
-<%= render 'comments' %>
+
+<% for comment in @comments %>
+  <div class="comment">
+    <div class="created_at"><%= comment.created_at.strftime("%B %d, %Y") %></div>   
+    <div class="user_id"><%= link_to comment.user.try(:full_name) || "A user" %></div>
+    <div class="content">
+      <%= comment.comment %>
+    </div>
+    <div class="actions">
+      <%= link_to "Reply", new_user_comment_path(:parent_id => comment) %> |
+      <%= link_to "Destroy", user_comments_path, :confirm => "Are you sure?", :method => :delete %>
+    </div>
+  </div>
+<% end %>
+
+<!-- <#%= render 'comments' %> -->
 
 <!-- <p><%#= link_to "New Comment", [:new, @commentable, :comment] %></p> -->
