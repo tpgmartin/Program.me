@@ -11,9 +11,13 @@ class Ability
       can [:read, :edit], Event do |target_event|
         user.events.include?(target_event)
       end
-      can :manage, Comment do |target_comment|
-        user.comments.include?(target_comment)
-      end
+
+      can :read, Comment
+      can :manage, Comment, :user_id => user.id
+
+      # can :manage, Comment do |target_comment|
+      #   user.comments.include?(target_comment)
+      # end
       can [:read, :update, :destroy], Relationship    
     end
     if user.role? :student
@@ -22,9 +26,13 @@ class Ability
       can [:read, :edit], Event do |target_event|
         user.events.include?(target_event)
       end
-      can :manage, Comment do |target_comment|
-        user.comments.include?(target_comment)
-      end
+
+      can [:read, :create], Comment
+      can [:edit, :destroy], Comment, :user_id => user.id
+
+      # can :manage, Comment do |target_comment|
+      #   user.comments.include?(target_comment)
+      # end
       can [:read, :update, :destroy], Relationship
     end
 
