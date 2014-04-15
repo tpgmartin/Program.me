@@ -25,7 +25,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])    
-    @event.users << current_user << User.where(email: @event.recipient_email)[0]
+    recipient = User.where(email: @event.recipient_email)[0] || []
+    @event.users << current_user << recipient
     @user = current_user
     if @event.save
       @event.create_activity :create, owner: current_user
