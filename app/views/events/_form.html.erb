@@ -5,12 +5,12 @@
   <%= f.input :name %>
   <%= f.input :description %>
 
-  <% if @contacts %>    
+  <!-- <#% if @contacts %>     -->
   <div class="control-group required event_recipient_email" style="margin-left: 100px">
     Recipient &nbsp;&nbsp;&nbsp;
     <%= f.collection_select :recipient_email, @contacts, :email, :full_name, include_blank: true  %>
   </div>
-  <% end %>
+  <!-- <#% end %> -->
 
   <%= f.input :date, as: :datepicker %>
   <%= f.input :start_time %>
