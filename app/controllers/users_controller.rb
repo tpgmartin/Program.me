@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   # after_filter :check_signup
+  skip_before_action :check_relations, only: [:new, :create] 
+  skip_before_action :check_inverse_relations, only: [:new, :create]
   load_and_authorize_resource
 
   @@connections = []
 
-  # skip_before_action :check_relations, only: [:new, :create] 
-  # skip_before_action :check_inverse_relations, only: [:new, :create]
+ 
 
   def index
     @users = User.all
