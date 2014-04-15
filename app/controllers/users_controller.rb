@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   # after_filter :check_signup
-  skip_before_action :check_relations, only: [:new, :create] 
-  skip_before_action :check_inverse_relations, only: [:new, :create]
+  before_filter :check_relations, only: :show
+  before_filter :check_inverse_relations, only: :show
+
+
   load_and_authorize_resource
 
   @@connections = []
