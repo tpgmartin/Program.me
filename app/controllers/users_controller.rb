@@ -45,13 +45,13 @@ class UsersController < ApplicationController
   private
 
   def check_relations
-    @user.relations.each do |relation|
+    current_user.relations.each do |relation|
       @@connections << relation.id
     end
   end
 
   def check_inverse_relations
-    @user.inverse_relations.each do |inverse_relation|
+    current_user.inverse_relations.each do |inverse_relation|
       @@connections << inverse_relation.id
     end
 

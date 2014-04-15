@@ -8,7 +8,7 @@
   <% for relationship in @user.relationships %>
     <li>
       <% if relationship.relation %>
-      <%= relationship.relation.full_name %>
+      <%= link_to relationship.relation.full_name, user_path(relationship.relation.id) %>
       (<%= link_to "remove", relationship, :method => :delete %>)
       <% end %>
     </li>

@@ -5,6 +5,9 @@ class RelationshipsController < ApplicationController
     @user = current_user   
   end
 
+  def show
+  end
+
   def create
     @relationship = current_user.relationships.build(:relation_id => params[:relation_id])
     if @relationship.save
