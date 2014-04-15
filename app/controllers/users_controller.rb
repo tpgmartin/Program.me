@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   @@connections = []
 
-  before_filter :check_relations
-  before_filter :check_inverse_relations
+  skip_before_action :check_relations, only: [:new, :create] 
+  skip_before_action :check_inverse_relations, only: [:new, :create]
 
   def index
     @users = User.all
