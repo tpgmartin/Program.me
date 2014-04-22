@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
   def new
     @user = current_user
-    @contacts = current_user.inverse_relations & current_user.relations
+    @contacts = current_user.inverse_relations | current_user.relations
     @relationships = Relationship.where(user_id: current_user.id)
     @event = Event.new
   end
@@ -58,6 +58,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     # @event.create_activity :destroy, owner: current_user
-    redirect_to events_url 
+    redirect_to events_url, notice: 'Event deleted' 
   end
 end
