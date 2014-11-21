@@ -4,6 +4,8 @@
 
 ### Description
 
+This project is current hosted [here](http://program-me.herokuapp.com/)
+
 This repo constitutes my final project for the December 2013 - March 2014
 intake of General Assembly's Web Development Immersive course.
 
